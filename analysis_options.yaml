@@ -21,6 +21,7 @@ analyzer:
   exclude:
     # exclude generated files
     - "**/*.g.dart"
+    - "**/*.gen.dart"
     - "**/*.config.dart"
     - "**/*.freezed.dart"
     - "**/router.gr.dart"
