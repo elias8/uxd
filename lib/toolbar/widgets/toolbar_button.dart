@@ -12,7 +12,7 @@ class ToolbarButton extends StatelessWidget {
   final String? tooltip;
 
   /// The path to the svg asset image.
-  final String svgIconPath;
+  final String iconPath;
 
   /// A callback to handle a tap event.
   final VoidCallback? onTap;
@@ -23,13 +23,13 @@ class ToolbarButton extends StatelessWidget {
     this.onTap,
     this.tooltip,
     this.isActive = false,
-    required this.svgIconPath,
+    required this.iconPath,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final iconColor = isActive ? Colors.blue : null;
-    final icon = SvgPicture.asset(svgIconPath, color: iconColor);
+    final icon = SvgPicture.asset(iconPath, color: iconColor);
     return GestureDetector(
       onTap: onTap,
       child: Container(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../board/board.dart';
 import '../../inspector/inspector.dart';
-import '../../panel/panel.dart';
 import '../../toolbar/toolbar.dart';
+
+part 'design_view.dart';
 
 /// {@template design_page}
 /// The main page that contains all design widgets.
@@ -14,15 +16,9 @@ class DesignPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: const [
-          Toolbar(),
-          DesignPanelWidget(),
-          Expanded(child: DesignBoard()),
-          PropertyInspector(),
-        ],
-      ),
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (_) => ToolbarBloc())],
+      child: const _DesignView(),
     );
   }
 }
