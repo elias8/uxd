@@ -3,5 +3,14 @@
   "appName": "FXD",
   "@appName": {
     "description": "The application name"
+  },
+  "designToolbarButtonTooltip": "{name, select, selector {Select (V)} rectangle {Rectangle (R)} ellipse {Ellipse (E)} polygon {Polygon (Y)} line {Line (L)} pen {Pen (P)} text {Text (T)} artboard {Artboard (A)} zoom {Zoom (Z)} }",
+  "@designToolbarButtonTooltip": {
+    "description": "Shown on toolbar buttons as a tooltip text",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   }
 }

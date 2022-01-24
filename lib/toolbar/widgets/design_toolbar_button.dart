@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../../l10n/l10n.dart';
 import '../toolbar.dart';
 
 /// {@template design_toolbar_button}
@@ -15,7 +16,9 @@ class DesignToolbarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return ToolbarButton(
+      tooltip: l10n.designToolbarButtonTooltip(tool.name),
       svgIconPath: 'assets/icons/toolbar/${tool.name}.svg',
     );
   }
