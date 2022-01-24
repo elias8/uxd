@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "appName": "FXD",
+  "@appName": {
+    "description": "The application name"
+  }
+}
