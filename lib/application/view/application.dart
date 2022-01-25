@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../design/design.dart';
 import '../../l10n/l10n.dart';
@@ -24,7 +25,21 @@ class Application extends StatelessWidget {
       ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
+        brightness: Brightness.light,
+        textTheme: GoogleFonts.ptSansTextTheme(),
         scaffoldBackgroundColor: const Color(0XFFE4E4E4),
+        tabBarTheme: const TabBarTheme(
+          indicatorSize: TabBarIndicatorSize.label,
+          unselectedLabelColor: Color(0XFF919191),
+          labelPadding: EdgeInsets.symmetric(horizontal: 10),
+          indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(
+              color: Color(0XFF616161),
+              width: 2.5,
+            ),
+          ),
+        ),
         tooltipTheme: TooltipThemeData(
           verticalOffset: 16,
           waitDuration: const Duration(milliseconds: 1000),
