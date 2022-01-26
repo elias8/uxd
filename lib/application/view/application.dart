@@ -29,11 +29,13 @@ class Application extends StatelessWidget {
         brightness: Brightness.light,
         textTheme: GoogleFonts.ptSansTextTheme(),
         scaffoldBackgroundColor: const Color(0XFFE4E4E4),
-        tabBarTheme: const TabBarTheme(
+        tabBarTheme: TabBarTheme(
+          labelStyle: GoogleFonts.ptSans(),
           indicatorSize: TabBarIndicatorSize.label,
-          unselectedLabelColor: Color(0XFF919191),
-          labelPadding: EdgeInsets.symmetric(horizontal: 10),
-          indicator: UnderlineTabIndicator(
+          unselectedLabelStyle: GoogleFonts.ptSans(),
+          unselectedLabelColor: const Color(0XFF919191),
+          labelPadding: const EdgeInsets.symmetric(horizontal: 10),
+          indicator: const UnderlineTabIndicator(
             borderSide: BorderSide(
               color: Color(0XFF616161),
               width: 2.5,
