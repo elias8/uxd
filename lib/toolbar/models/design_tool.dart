@@ -1,3 +1,21 @@
+/// Defines the board view type.
+enum BoardViewType {
+  /// A design board view.
+  design,
+
+  /// A prototype board view.
+  prototype
+}
+
+/// Defines the libraries and layers panel.
+enum DesignPanel {
+  /// The library panel.
+  libraries,
+
+  /// The layer panel.
+  layers
+}
+
 /// Defines the selection tool, drawing tools, text tool, art board tool,
 /// and extra.
 enum DesignTool {
@@ -27,13 +45,4 @@ enum DesignTool {
 
   /// A zoom design tool.
   zoom,
-}
-
-/// Defines the libraries and layers panel.
-enum DesignPanel {
-  /// The library panel.
-  libraries,
-
-  /// The layer panel.
-  layers
 }

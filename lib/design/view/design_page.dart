@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../board/board.dart';
 import '../../inspector/inspector.dart';
+import '../../titlebar/titlebar.dart';
 import '../../toolbar/toolbar.dart';
-
-part 'design_view.dart';
 
 /// {@template design_page}
 /// The main page that contains all design widgets.
@@ -19,6 +18,34 @@ class DesignPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [BlocProvider(create: (_) => ToolbarBloc())],
       child: const _DesignView(),
+    );
+  }
+}
+
+class _DesignView extends StatelessWidget {
+  const _DesignView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          const TitleBar(),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Row(
+                children: const [
+                  Toolbar(),
+                  DesignPanelContainer(),
+                  Expanded(child: DesignBoard()),
+                  PropertyInspector(),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -14,17 +14,33 @@ class Toolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const backgroundColor = Color(0XFFF7F7F7);
     return MouseRegion(
-      cursor: SystemMouseCursors.wait,
+      cursor: SystemMouseCursors.basic,
       child: Container(
         width: _kToolbarWidth,
-        color: const Color(0XFFF7F7F7),
+        color: backgroundColor,
         padding: const EdgeInsets.symmetric(vertical: 4),
-        child: Column(
+        child: Stack(
           children: [
-            ...DesignTool.values.map((it) => DesignToolbarButton(tool: it)),
-            const Spacer(),
-            ...DesignPanel.values.map((it) => DesignPanelButton(panel: it)),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: DesignPanel.values
+                    .map((it) => DesignPanelButton(panel: it))
+                    .toList(),
+              ),
+            ),
+            ColoredBox(
+              color: backgroundColor,
+              child: ListView(
+                shrinkWrap: true,
+                children: DesignTool.values
+                    .map((it) => DesignToolbarButton(tool: it))
+                    .toList(),
+              ),
+            ),
           ],
         ),
       ),

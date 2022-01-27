@@ -12,5 +12,37 @@
         "type": "String"
       }
     }
+  },
+  "boardViewTypeLabel": "{name, select, design {Design} prototype {Prototype}}",
+  "@boardViewTypeLabel": {
+    "description": "Shown on the title bar tabs",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formattedZoomLevel": "{level}",
+  "@formattedZoomLevel": {
+    "description": "Shown on title bar as a zoom level in percentage",
+    "placeholders": {
+      "level": {
+        "format": "percentPattern",
+        "type": "num"
+      }
+    }
+  },
+  "formattedDecimalZoomLevel": "{level}",
+  "@formattedDecimalZoomLevel": {
+    "description": "Shown on title bar as a zoom level in percentage",
+    "placeholders": {
+      "level": {
+        "format": "decimalPercentPattern",
+        "optionalParameters": {
+          "decimalDigits": 1
+        },
+        "type": "num"
+      }
+    }
   }
 }

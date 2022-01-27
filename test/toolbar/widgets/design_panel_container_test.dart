@@ -33,8 +33,12 @@ void main() {
     });
 
     testWidgets('should show selected panel', (tester) async {
-      when(() => toolbarBloc.state)
-          .thenReturn(const ToolbarState(DesignTool.text, DesignPanel.layers));
+      when(() => toolbarBloc.state).thenReturn(
+        const ToolbarState(
+          designTool: DesignTool.text,
+          designPanel: DesignPanel.layers,
+        ),
+      );
       await tester.pumpApp(
         BlocProvider.value(
           value: toolbarBloc,
