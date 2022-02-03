@@ -93,3 +93,5 @@ linter:
 
     # We need to override classes with `==` operators most of the time for testing purpose.
     avoid_implementing_value_types: false
+    
+    prefer_asserts_with_message: false

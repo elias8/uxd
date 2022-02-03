@@ -53,9 +53,7 @@ class _ZoomLevelInputFieldState extends State<ZoomLevelInputField> {
               padding: EdgeInsets.zero,
               offset: const Offset(36, 20),
               onSelected: _onZoomLevelSelected,
-              child: const SizedBox(
-                width: double.infinity,
-                height: double.infinity,
+              child: const SizedBox.expand(
                 child: Icon(Icons.expand_more_rounded, size: 18),
               ),
               itemBuilder: (_) =>
