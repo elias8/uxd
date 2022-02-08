@@ -1,5 +1,7 @@
 # UXD
 
+[![codecov](https://codecov.io/gh/Elias8/UXD/branch/main/graph/badge.svg?token=hl5feg6dAk)](https://codecov.io/gh/Elias8/UXD)
+
 A User Experience Design tool built with flutter.
 
 ## Getting Started
