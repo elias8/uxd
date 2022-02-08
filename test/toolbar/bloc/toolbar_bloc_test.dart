@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fxd/toolbar/toolbar.dart';
+import 'package:uxd/toolbar/toolbar.dart';
 
 void main() {
   group('$ToolbarBloc', () {

@@ -1,11 +1,11 @@
 {
-    "name": "fxd",
-    "short_name": "fxd",
+    "name": "uxd",
+    "short_name": "uxd",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "An Adobe XD clone build with flutter.",
+    "description": "A User Experience Design tool built with flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

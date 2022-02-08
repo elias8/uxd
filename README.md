@@ -1,6 +1,6 @@
-# fxd
+# UXD
 
-An Adobe XD clone build with flutter.
+A User Experience Design tool built with flutter.
 
 ## Getting Started
 
@@ -29,7 +29,7 @@ the [official internationalization guide for Flutter][internationalization_link]
 ```arb
 {
   "@@locale": "en",
-  "appName": "FDX",
+  "appName": "UXD",
   "@appName": {
     "description": "The application name"
   }
@@ -41,7 +41,7 @@ the [official internationalization guide for Flutter][internationalization_link]
 ```arb
 {
   "@@locale": "en",
-  "appName": "FDX",
+  "appName": "UXD",
   "@appName": {
     "description": "The application name"
   },
@@ -55,7 +55,7 @@ the [official internationalization guide for Flutter][internationalization_link]
 3. Use the new string
 
 ```dart
-import 'package:fdx/l10n/l10n.dart';
+import 'package:uxd/l10n/l10n.dart';
 
 @override
 Widget build(BuildContext context) {
@@ -98,7 +98,7 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `macos/Runner/In
 ```arb
 {
   "@@locale": "en",
-  "appName": "FDX",
+  "appName": "UXD",
   "@appName": {
     "description": "The application name"
   },
@@ -110,7 +110,7 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `macos/Runner/In
 ```arb
 {
   "@@locale": "am",
-  "appName": "FDX",
+  "appName": "UXD",
   "@appName": {
     "description": "የመተግበሪያ ስም"
   },
