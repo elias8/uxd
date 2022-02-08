@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../toolbar.dart';
+import '../../models/models.dart';
 
 part 'toolbar_event.dart';
 part 'toolbar_state.dart';

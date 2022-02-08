@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/models.dart';
 import '../toolbar.dart';
 
 /// {@template design_panel_button}

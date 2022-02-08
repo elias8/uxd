@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../models/models.dart';
 import '../toolbar.dart';
 
 const _kToolbarWidth = 40.0;

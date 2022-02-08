@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../l10n/l10n.dart';
+import '../../models/models.dart';
 import '../../toolbar/toolbar.dart';
 
 /// {@template zoom_level_input_field}

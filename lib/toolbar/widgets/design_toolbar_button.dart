@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
+import '../../models/models.dart';
 import '../toolbar.dart';
 
 /// {@template design_toolbar_button}
