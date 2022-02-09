@@ -1,1 +1,2 @@
+export 'blocs/board_bloc.dart';
 export 'widgets/widgets.dart';
