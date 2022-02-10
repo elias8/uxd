@@ -2,11 +2,10 @@
 part of 'board_bloc.dart';
 
 class BoardState extends Equatable {
-  static final _initialTransform = Matrix4.identity()..scale(.33);
-  static final initial = BoardState(board: Board(transform: _initialTransform));
+  static const initial = BoardState();
 
-  /// The current board state.
-  final Board board;
+  /// The current zoom level.
+  final BoardZoom zoom;
 
   /// The current design tool.
   final DesignTool designTool;
@@ -17,39 +16,46 @@ class BoardState extends Equatable {
   /// The current board view type.
   final BoardViewType boardViewType;
 
+  /// The current hover location.
+  final Offset? hoverLocation;
+
   const BoardState({
     this.designPanel,
-    required this.board,
+    this.hoverLocation,
+    this.zoom = BoardZoom.x33,
     this.designTool = DesignTool.selector,
     this.boardViewType = BoardViewType.design,
   });
 
   @override
   List<Object?> get props => [
-        board,
+        zoom,
         designTool,
         designPanel,
         boardViewType,
+        hoverLocation,
       ];
 
   BoardState copyWith({
-    Board? board,
+    BoardZoom? zoom,
+    Offset? hoverLocation,
     DesignTool? designTool,
     DesignPanel? designPanel,
     BoardViewType? boardViewType,
   }) {
     return BoardState(
-      board: board ?? this.board,
+      zoom: zoom ?? this.zoom,
       designTool: designTool ?? this.designTool,
       designPanel: designPanel ?? this.designPanel,
       boardViewType: boardViewType ?? this.boardViewType,
+      hoverLocation: hoverLocation ?? this.hoverLocation,
     );
   }
 
   /// Returns a new state with an empty [designPanel].
   BoardState resetPanel() {
     return BoardState(
-      board: board,
+      zoom: zoom,
       designTool: designTool,
       boardViewType: boardViewType,
     );

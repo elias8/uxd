@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../board/board.dart';
 import '../../models/models.dart';
 import '../toolbar.dart';
 
@@ -16,15 +17,14 @@ class DesignPanelButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentPanel = context.select<ToolbarBloc, DesignPanel?>(_selector);
+    final currentPanel = context.select<BoardBloc, DesignPanel?>(_selector);
     return ToolbarButton(
-      onTap: () => context
-          .read<ToolbarBloc>()
-          .add(ToolbarEvent.designPanelSelected(panel)),
+      onTap: () =>
+          context.read<BoardBloc>().add(BoardEvent.designPanelSelected(panel)),
       isActive: panel == currentPanel,
       iconPath: 'assets/icons/toolbar/${panel.name}.svg',
     );
   }
 
-  DesignPanel? _selector(ToolbarBloc bloc) => bloc.state.designPanel;
+  DesignPanel? _selector(BoardBloc bloc) => bloc.state.designPanel;
 }

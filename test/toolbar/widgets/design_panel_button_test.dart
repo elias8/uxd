@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:uxd/board/board.dart';
 import 'package:uxd/models/models.dart';
 import 'package:uxd/toolbar/toolbar.dart';
 
@@ -10,18 +11,18 @@ import '../../helpers/helpers.dart';
 
 void main() {
   group('$DesignPanelButton', () {
-    late ToolbarBloc toolbarBloc;
+    late BoardBloc boardBloc;
 
     setUp(() {
-      toolbarBloc = _MockToolbarBloc();
-      whenListen(toolbarBloc, Stream.value(ToolbarState.initial));
-      when(() => toolbarBloc.state).thenReturn(ToolbarState.initial);
+      boardBloc = _MockBoardBloc();
+      whenListen(boardBloc, Stream.value(BoardState.initial));
+      when(() => boardBloc.state).thenReturn(BoardState.initial);
     });
 
     testWidgets('renders DesignPanelButton', (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
-          value: toolbarBloc,
+          value: boardBloc,
           child: const Scaffold(
             body: DesignPanelButton(
               panel: DesignPanel.layers,
@@ -40,10 +41,10 @@ void main() {
 
     testWidgets('should add a new event when tapped', (tester) async {
       const layersPanelEvent =
-          ToolbarEvent.designPanelSelected(DesignPanel.libraries);
+          BoardEvent.designPanelSelected(DesignPanel.libraries);
       await tester.pumpApp(
         BlocProvider.value(
-          value: toolbarBloc,
+          value: boardBloc,
           child: const Scaffold(
             body: DesignPanelButton(
               panel: DesignPanel.libraries,
@@ -55,9 +56,9 @@ void main() {
       await tester.pump();
       await tester.tap(find.byType(DesignPanelButton));
 
-      verify(() => toolbarBloc.add(layersPanelEvent)).called(1);
+      verify(() => boardBloc.add(layersPanelEvent)).called(1);
     });
   });
 }
 
-class _MockToolbarBloc extends Mock implements ToolbarBloc {}
+class _MockBoardBloc extends Mock implements BoardBloc {}

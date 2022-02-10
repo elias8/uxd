@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:uxd/board/board.dart';
 import 'package:uxd/models/models.dart';
 import 'package:uxd/toolbar/toolbar.dart';
 
@@ -10,18 +11,18 @@ import '../../helpers/helpers.dart';
 
 void main() {
   group('$DesignPanelContainer', () {
-    late ToolbarBloc toolbarBloc;
+    late BoardBloc boardBloc;
 
     setUp(() {
-      toolbarBloc = _MockToolbarBloc();
-      whenListen(toolbarBloc, Stream.value(ToolbarState.initial));
-      when(() => toolbarBloc.state).thenReturn(ToolbarState.initial);
+      boardBloc = _MockBoardBloc();
+      whenListen(boardBloc, Stream.value(BoardState.initial));
+      when(() => boardBloc.state).thenReturn(BoardState.initial);
     });
 
     testWidgets('renders DesignPanelContainer', (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
-          value: toolbarBloc,
+          value: boardBloc,
           child: const Scaffold(
             body: DesignPanelContainer(),
           ),
@@ -34,15 +35,15 @@ void main() {
     });
 
     testWidgets('should show selected panel', (tester) async {
-      when(() => toolbarBloc.state).thenReturn(
-        const ToolbarState(
+      when(() => boardBloc.state).thenReturn(
+        BoardState.initial.copyWith(
           designTool: DesignTool.text,
           designPanel: DesignPanel.layers,
         ),
       );
       await tester.pumpApp(
         BlocProvider.value(
-          value: toolbarBloc,
+          value: boardBloc,
           child: const Scaffold(
             body: DesignPanelContainer(),
           ),
@@ -56,4 +57,4 @@ void main() {
   });
 }
 
-class _MockToolbarBloc extends Mock implements ToolbarBloc {}
+class _MockBoardBloc extends Mock implements BoardBloc {}

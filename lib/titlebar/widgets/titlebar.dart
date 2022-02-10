@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../board/board.dart';
 import '../../helpers/helpers.dart';
 import '../../l10n/l10n.dart';
 import '../titlebar.dart';
@@ -60,7 +61,7 @@ class _TitleBarAction extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: const [
-        ZoomLevelInputField(),
+        BoardZoomInputField(),
       ],
     );
   }

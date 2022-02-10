@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../board/board.dart';
 import '../../models/models.dart';
-import '../../toolbar/toolbar.dart';
 
 const _kDesignPanelWidth = 196.0;
 
@@ -15,7 +15,7 @@ class DesignPanelContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentPanel = context.select<ToolbarBloc, DesignPanel?>(_selector);
+    final currentPanel = context.select<BoardBloc, DesignPanel?>(_selector);
     if (currentPanel == null) return const SizedBox();
     return Container(
       width: _kDesignPanelWidth,
@@ -24,5 +24,5 @@ class DesignPanelContainer extends StatelessWidget {
     );
   }
 
-  DesignPanel? _selector(ToolbarBloc bloc) => bloc.state.designPanel;
+  DesignPanel? _selector(BoardBloc bloc) => bloc.state.designPanel;
 }

@@ -5,6 +5,7 @@ import '../../board/board.dart';
 import '../../inspector/inspector.dart';
 import '../../titlebar/titlebar.dart';
 import '../../toolbar/toolbar.dart';
+import 'design_board.dart';
 
 /// {@template design_page}
 /// The main page that contains all design widgets.
@@ -16,7 +17,7 @@ class DesignPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => ToolbarBloc())],
+      providers: [BlocProvider(create: (_) => BoardBloc())],
       child: const _DesignView(),
     );
   }

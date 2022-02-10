@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../board/board.dart';
 import '../../l10n/l10n.dart';
 import '../../models/models.dart';
 import '../toolbar.dart';
@@ -19,16 +20,15 @@ class DesignToolbarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final currentTool = context.select<ToolbarBloc, DesignTool>(_selector);
+    final currentTool = context.select<BoardBloc, DesignTool>(_selector);
     return ToolbarButton(
-      onTap: () => context
-          .read<ToolbarBloc>()
-          .add(ToolbarEvent.designToolSelected(tool)),
+      onTap: () =>
+          context.read<BoardBloc>().add(BoardEvent.designToolSelected(tool)),
       isActive: tool == currentTool,
       iconPath: 'assets/icons/toolbar/${tool.name}.svg',
       tooltip: l10n.designToolbarButtonTooltip(tool.name),
     );
   }
 
-  DesignTool _selector(ToolbarBloc bloc) => bloc.state.designTool;
+  DesignTool _selector(BoardBloc bloc) => bloc.state.designTool;
 }

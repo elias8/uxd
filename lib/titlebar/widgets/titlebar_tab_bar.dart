@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../board/board.dart';
 import '../../l10n/l10n.dart';
 import '../../models/models.dart';
-import '../../toolbar/toolbar.dart';
 
 /// {@template}
 /// A tab bar shown to select the [BoardViewType].
@@ -17,8 +17,8 @@ class TitleBarTab extends StatelessWidget {
     final l10n = context.l10n;
     void onTabSelected(int value) {
       final viewType = BoardViewType.values.elementAt(value);
-      final event = ToolbarEvent.boardViewTypeSelected(viewType);
-      context.read<ToolbarBloc>().add(event);
+      final event = BoardEvent.boardViewTypeSelected(viewType);
+      context.read<BoardBloc>().add(event);
     }
 
     return DefaultTabController(

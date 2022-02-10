@@ -1,8 +1,10 @@
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:vector_math/vector_math_64.dart';
 
 import '../../models/models.dart';
+import '../models/models.dart';
 
 part 'board_event.dart';
 part 'board_state.dart';
@@ -18,6 +20,10 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
     on<_BoarViewTypeSelected>(_onBoardViewTypeSelected);
     on<_DesignPanelSelected>(_onDesignPanelSelected);
     on<_DesignToolSelected>(_onDesignToolSelected);
+    on<_BoardZoomChanged>(_onZoomChanged);
+
+    // Gesture Events
+    on<_BoardHovered>(_onHovered);
   }
 
   void _onBoardViewTypeSelected(_BoarViewTypeSelected event, _Emitter emit) {
@@ -33,5 +39,14 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
 
   void _onDesignToolSelected(_DesignToolSelected event, _Emitter emit) {
     emit(state.copyWith(designTool: event.designTool));
+  }
+
+  void _onHovered(_BoardHovered event, _Emitter emit) {
+    emit(state.copyWith(hoverLocation: event.location));
+  }
+
+  void _onZoomChanged(_BoardZoomChanged event, _Emitter emit) {
+    final zoom = event.zoom?.optimize() ?? state.zoom;
+    emit(state.copyWith(zoom: zoom));
   }
 }

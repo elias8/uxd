@@ -50,5 +50,37 @@ void main() {
         ],
       );
     });
+
+    group('_BoardZoomChanged', () {
+      blocTest<BoardBloc, BoardState>(
+        'should emit [ BoardState, BoardState, BoardState, BoardState, '
+        'BoardState, BoardState ] when zoom is selected',
+        build: () => boardBloc,
+        act: (bloc) => bloc
+          ..add(const BoardEvent.zoomChanged())
+          ..add(const BoardEvent.zoomChanged(BoardZoom(23.2)))
+          ..add(const BoardEvent.zoomChanged(BoardZoom(0.001)))
+          ..add(const BoardEvent.zoomChanged(BoardZoom(1000)))
+          ..add(const BoardEvent.zoomChanged(BoardZoom(10)))
+          ..add(const BoardEvent.zoomChanged(BoardZoom.max)),
+        expect: () => const [
+          BoardState.initial,
+          BoardState(zoom: BoardZoom(23.2)),
+          BoardState(zoom: BoardZoom.min),
+          BoardState(zoom: BoardZoom.max),
+          BoardState(zoom: BoardZoom(10)),
+          BoardState(zoom: BoardZoom.max),
+        ],
+      );
+    });
+
+    group('_BoardHovered', () {
+      blocTest<BoardBloc, BoardState>(
+        'should emit [ BoardState ] when a hover event is added',
+        build: () => boardBloc,
+        act: (bloc) => bloc.add(const BoardEvent.hovered(Offset.zero)),
+        expect: () => [BoardState.initial.copyWith(hoverLocation: Offset.zero)],
+      );
+    });
   });
 }

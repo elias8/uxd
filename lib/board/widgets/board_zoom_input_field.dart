@@ -3,34 +3,33 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../board/board.dart';
 import '../../l10n/l10n.dart';
-import '../../models/models.dart';
-import '../../toolbar/toolbar.dart';
 
-/// {@template zoom_level_input_field}
+/// {@template board_zoom_input_field}
 /// An input field to change a design board zoom level.
 ///
 /// The widget has text input field and a predefined pop up menu to select a
 /// predefined zoom level.
 /// {@template}
-class ZoomLevelInputField extends StatefulWidget {
-  /// {@macro zoom_level_input_field}
-  const ZoomLevelInputField({Key? key}) : super(key: key);
+class BoardZoomInputField extends StatefulWidget {
+  /// {@macro board_zoom_input_field}
+  const BoardZoomInputField({Key? key}) : super(key: key);
 
   @override
-  State<ZoomLevelInputField> createState() => _ZoomLevelInputFieldState();
+  State<BoardZoomInputField> createState() => _BoardZoomInputFieldState();
 }
 
-class _ZoomLevelInputFieldState extends State<ZoomLevelInputField> {
-  late final _toolbarBloc = context.read<ToolbarBloc>();
+class _BoardZoomInputFieldState extends State<BoardZoomInputField> {
+  late final _boarBloc = context.read<BoardBloc>();
   late final _controller = TextEditingController();
   late final _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final level = context.select<ToolbarBloc, ZoomLevel>(_selector).level;
-    return BlocListener<ToolbarBloc, ToolbarState>(
+    final level = context.select<BoardBloc, BoardZoom>(_selector).level;
+    return BlocListener<BoardBloc, BoardState>(
       listenWhen: _shouldListen,
       listener: _blocListener,
       child: SizedBox(
@@ -50,15 +49,15 @@ class _ZoomLevelInputFieldState extends State<ZoomLevelInputField> {
               maxHeight: 24,
               maxWidth: 24,
             ),
-            suffixIcon: PopupMenuButton<ZoomLevel>(
+            suffixIcon: PopupMenuButton<BoardZoom>(
               padding: EdgeInsets.zero,
               offset: const Offset(36, 20),
-              onSelected: _onZoomLevelSelected,
+              onSelected: _onZoomSelected,
               child: const SizedBox.expand(
                 child: Icon(Icons.expand_more_rounded, size: 18),
               ),
               itemBuilder: (_) =>
-                  ZoomLevel.levels.map(_buildPopupMenuItem).toList(),
+                  BoardZoom.levels.map(_buildPopupMenuItem).toList(),
             ),
           ),
         ),
@@ -85,21 +84,21 @@ class _ZoomLevelInputFieldState extends State<ZoomLevelInputField> {
     _focusNode.addListener(_onFocusChanged);
   }
 
-  void _blocListener(BuildContext context, ToolbarState state) {
-    final level = state.zoomLevel.level;
+  void _blocListener(BuildContext context, BoardState state) {
+    final level = state.zoom.level;
     _controller.text = context.l10n.formattedZoomLevel(level);
   }
 
-  PopupMenuItem<ZoomLevel> _buildPopupMenuItem(ZoomLevel zoomLevel) {
+  PopupMenuItem<BoardZoom> _buildPopupMenuItem(BoardZoom zoom) {
     return PopupMenuItem(
       height: 16,
-      value: zoomLevel,
-      child: Text(context.l10n.formattedZoomLevel(zoomLevel.level)),
+      value: zoom,
+      child: Text(context.l10n.formattedZoomLevel(zoom.level)),
     );
   }
 
   void _onFocusChanged() {
-    final text = _controller.text;
+    final text = _controller.text.trim();
     if (_focusNode.hasFocus) {
       _controller.text = text.replaceAll('%', '');
       _controller.selection = TextSelection(
@@ -113,23 +112,23 @@ class _ZoomLevelInputFieldState extends State<ZoomLevelInputField> {
   }
 
   void _onZoomLevelChanged(String value) {
-    final zoom = ZoomLevel.tryParse(value);
-    _toolbarBloc.add(ToolbarEvent.zoomLevelUpdated(zoom));
+    final zoom = BoardZoom.tryParse(value);
+    _boarBloc.add(BoardEvent.zoomChanged(zoom));
   }
 
-  void _onZoomLevelSelected(ZoomLevel zoom) {
+  void _onZoomSelected(BoardZoom zoom) {
     _controller.text = context.l10n.formattedDecimalZoomLevel(zoom.level);
-    _toolbarBloc.add(ToolbarEvent.zoomLevelUpdated(zoom));
+    _boarBloc.add(BoardEvent.zoomChanged(zoom));
   }
 
-  ZoomLevel _selector(ToolbarBloc bloc) => bloc.state.zoomLevel;
+  BoardZoom _selector(BoardBloc bloc) => bloc.state.zoom;
 
   void _setTextValue() {
-    final level = _toolbarBloc.state.zoomLevel.level;
+    final level = _boarBloc.state.zoom.level;
     _controller.text = context.l10n.formattedDecimalZoomLevel(level);
   }
 
-  bool _shouldListen(ToolbarState previous, ToolbarState current) {
-    return previous.zoomLevel != current.zoomLevel;
+  bool _shouldListen(BoardState previous, BoardState current) {
+    return previous.zoom != current.zoom;
   }
 }

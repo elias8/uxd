@@ -3,33 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:uxd/models/models.dart';
-import 'package:uxd/titlebar/titlebar.dart';
-import 'package:uxd/toolbar/toolbar.dart';
+import 'package:uxd/board/board.dart';
 
 import '../../helpers/helpers.dart';
 
 void main() {
-  group('$ZoomLevelInputField', () {
-    late ToolbarBloc toolbarBloc;
+  group('$BoardZoomInputField', () {
+    late BoardBloc boardBloc;
 
     setUp(() {
-      toolbarBloc = _MockToolbarBloc();
-      whenListen(toolbarBloc, Stream.value(ToolbarState.initial));
-      when(() => toolbarBloc.state).thenReturn(ToolbarState.initial);
+      boardBloc = _MockBoardBloc();
+      whenListen(boardBloc, Stream.value(BoardState.initial));
+      when(() => boardBloc.state).thenReturn(BoardState.initial);
     });
 
-    testWidgets('renders ZoomLevelInputField', (tester) async {
-      final initialAndHintZoomLevelText = '${ZoomLevel.x33.level * 100}%';
+    testWidgets('renders BoardZoomInputField', (tester) async {
+      final initialAndHintZoomLevelText = '${BoardZoom.x33.level * 100}%';
       await tester.pumpApp(
         BlocProvider.value(
-          value: toolbarBloc,
-          child: const Scaffold(body: ZoomLevelInputField()),
+          value: boardBloc,
+          child: const Scaffold(
+            body: BoardZoomInputField(),
+          ),
         ),
       );
 
-      expect(find.byType(ZoomLevelInputField), findsOneWidget);
-      expect(find.byType(PopupMenuButton<ZoomLevel>), findsOneWidget);
+      expect(find.byType(BoardZoomInputField), findsOneWidget);
+      expect(find.byType(PopupMenuButton<BoardZoom>), findsOneWidget);
       expect(find.text(initialAndHintZoomLevelText), findsOneWidget);
       expect(find.byType(TextField), findsOneWidget);
 
@@ -37,20 +37,22 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        find.byType(PopupMenuItem<ZoomLevel>),
-        findsNWidgets(ZoomLevel.levels.length),
+        find.byType(PopupMenuItem<BoardZoom>),
+        findsNWidgets(BoardZoom.levels.length),
       );
     });
 
     testWidgets('selecting predefined zoom should add new event to the bloc',
         (tester) async {
-      const level = ZoomLevel.x50;
+      const level = BoardZoom.x50;
       final zoomLevelText = '${(level.level * 100).toInt()}%';
 
       await tester.pumpApp(
         BlocProvider.value(
-          value: toolbarBloc,
-          child: const Scaffold(body: ZoomLevelInputField()),
+          value: boardBloc,
+          child: const Scaffold(
+            body: BoardZoomInputField(),
+          ),
         ),
       );
 
@@ -58,20 +60,22 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester
-          .tap(find.widgetWithText(PopupMenuItem<ZoomLevel>, zoomLevelText));
-      verify(() => toolbarBloc.add(const ToolbarEvent.zoomLevelUpdated(level)))
+          .tap(find.widgetWithText(PopupMenuItem<BoardZoom>, zoomLevelText));
+      verify(() => boardBloc.add(const BoardEvent.zoomChanged(level)))
           .called(1);
     });
 
     testWidgets(
         'should remove % sign from the input field text when focused '
         'and add it when focused', (tester) async {
-      final focusedZoomLevelText = '${ZoomLevel.x33.level * 100}';
+      final focusedZoomLevelText = '${BoardZoom.x33.level * 100}';
       final unfocusedZoomLevelText = '$focusedZoomLevelText%';
       await tester.pumpApp(
         BlocProvider.value(
-          value: toolbarBloc,
-          child: const Scaffold(body: ZoomLevelInputField()),
+          value: boardBloc,
+          child: const Scaffold(
+            body: BoardZoomInputField(),
+          ),
         ),
       );
 
@@ -93,8 +97,10 @@ void main() {
         (tester) async {
       await tester.pumpApp(
         BlocProvider.value(
-          value: toolbarBloc,
-          child: const Scaffold(body: ZoomLevelInputField()),
+          value: boardBloc,
+          child: const Scaffold(
+            body: BoardZoomInputField(),
+          ),
         ),
       );
 
@@ -102,23 +108,20 @@ void main() {
       tester.widget<TextField>(find.byType(TextField)).focusNode?.unfocus();
       await tester.pumpAndSettle();
 
-      verify(() => toolbarBloc
-          .add(const ToolbarEvent.zoomLevelUpdated(ZoomLevel(0.58)))).called(1);
+      verify(() => boardBloc.add(const BoardEvent.zoomChanged(BoardZoom(0.58))))
+          .called(1);
     });
 
     testWidgets(
         'should update the text in TextField when a new state is emitted',
         (tester) async {
-      const level = ZoomLevel.x400;
-      final zoomLevelText = '${level.level * 100}%';
-      whenListen(
-        toolbarBloc,
-        Stream.value(const ToolbarState(zoomLevel: level)),
-      );
+      const zoom = BoardZoom.x400;
+      final zoomLevelText = '${zoom.level * 100}%';
+      whenListen(boardBloc, Stream.value(const BoardState(zoom: zoom)));
       await tester.pumpApp(
         BlocProvider.value(
-          value: toolbarBloc,
-          child: const Scaffold(body: ZoomLevelInputField()),
+          value: boardBloc,
+          child: const Scaffold(body: BoardZoomInputField()),
         ),
       );
       await tester.pump();
@@ -128,4 +131,4 @@ void main() {
   });
 }
 
-class _MockToolbarBloc extends Mock implements ToolbarBloc {}
+class _MockBoardBloc extends Mock implements BoardBloc {}
