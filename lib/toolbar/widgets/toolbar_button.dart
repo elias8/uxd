@@ -19,12 +19,12 @@ class ToolbarButton extends StatelessWidget {
 
   /// {@macro toolbar_button}
   const ToolbarButton({
-    Key? key,
+    super.key,
     this.onTap,
     this.tooltip,
     this.isActive = false,
     required this.iconPath,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

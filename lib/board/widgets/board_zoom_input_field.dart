@@ -14,7 +14,7 @@ import '../../l10n/l10n.dart';
 /// {@template}
 class BoardZoomInputField extends StatefulWidget {
   /// {@macro board_zoom_input_field}
-  const BoardZoomInputField({Key? key}) : super(key: key);
+  const BoardZoomInputField({super.key});
 
   @override
   State<BoardZoomInputField> createState() => _BoardZoomInputFieldState();

@@ -6,8 +6,8 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1.5.3
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
 
       - name: Install Dependencies
         run: flutter pub get
@@ -20,11 +20,11 @@ jobs:
 
       - name: Run Tests
         run: |
-          pub global activate remove_from_coverage
+          dart pub global activate remove_from_coverage
           export PATH=$PATH:$HOME/.pub-cache/bin
           flutter test --no-pub --coverage --test-randomize-ordering-seed random
-          pub global run remove_from_coverage:remove_from_coverage -f coverage/lcov.info -r '.g.dart$'
-          pub global run remove_from_coverage:remove_from_coverage -f coverage/lcov.info -r '.confg.dart$'
+          dart pub global run remove_from_coverage:remove_from_coverage -f coverage/lcov.info -r '.g.dart$'
+          dart pub global run remove_from_coverage:remove_from_coverage -f coverage/lcov.info -r '.confg.dart$'
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2

@@ -10,7 +10,7 @@ import '../../l10n/l10n.dart';
 /// {@endtemplate}
 class Application extends StatelessWidget {
   /// {@macro application}
-  const Application({Key? key}) : super(key: key);
+  const Application({super.key});
 
   @override
   Widget build(BuildContext context) {

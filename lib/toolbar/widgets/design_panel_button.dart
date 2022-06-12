@@ -13,7 +13,7 @@ class DesignPanelButton extends StatelessWidget {
   final DesignPanel panel;
 
   /// {@macro design_panel_button}
-  const DesignPanelButton({Key? key, required this.panel}) : super(key: key);
+  const DesignPanelButton({super.key, required this.panel});
 
   @override
   Widget build(BuildContext context) {
