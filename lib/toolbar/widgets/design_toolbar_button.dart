@@ -15,7 +15,7 @@ class DesignToolbarButton extends StatelessWidget {
   final DesignTool tool;
 
   /// {@macro design_toolbar_button}
-  const DesignToolbarButton({Key? key, required this.tool}) : super(key: key);
+  const DesignToolbarButton({super.key, required this.tool});
 
   @override
   Widget build(BuildContext context) {

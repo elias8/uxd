@@ -19,7 +19,7 @@ class BoardWidget extends StatefulWidget {
   final Widget child;
 
   /// {@macro board_widget}
-  const BoardWidget({Key? key, required this.child}) : super(key: key);
+  const BoardWidget({super.key, required this.child});
 
   @override
   State<BoardWidget> createState() => _BoardWidgetState();
@@ -140,7 +140,7 @@ class _BoardWidgetState extends State<BoardWidget> {
 
   void _onPointerSignal(PointerSignalEvent event) {
     if (!_isMetaKeyPressed && event is PointerScrollEvent) {
-      GestureBinding.instance?.pointerSignalResolver.register(event, (event) {
+      GestureBinding.instance.pointerSignalResolver.register(event, (event) {
         if (event is PointerScrollEvent) {
           if (event.scrollDelta.dy == 0) return;
           final currentPosition = event.scrollDelta;

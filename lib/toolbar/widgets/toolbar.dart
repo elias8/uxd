@@ -11,7 +11,7 @@ const _kToolbarWidth = 40.0;
 /// {@endtemplate}
 class Toolbar extends StatelessWidget {
   /// {@macro toolbar}
-  const Toolbar({Key? key}) : super(key: key);
+  const Toolbar({super.key});
 
   @override
   Widget build(BuildContext context) {

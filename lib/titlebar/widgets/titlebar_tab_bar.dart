@@ -10,7 +10,7 @@ import '../../models/models.dart';
 /// {@endtemplate}
 class TitleBarTab extends StatelessWidget {
   /// {@macro toolbar_tab}
-  const TitleBarTab({Key? key}) : super(key: key);
+  const TitleBarTab({super.key});
 
   @override
   Widget build(BuildContext context) {

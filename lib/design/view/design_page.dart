@@ -12,7 +12,7 @@ import 'design_board.dart';
 /// {@endtemplate}
 class DesignPage extends StatelessWidget {
   /// {@macro design_page}
-  const DesignPage({Key? key}) : super(key: key);
+  const DesignPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class DesignPage extends StatelessWidget {
 }
 
 class _DesignView extends StatelessWidget {
-  const _DesignView({Key? key}) : super(key: key);
+  const _DesignView();
 
   @override
   Widget build(BuildContext context) {

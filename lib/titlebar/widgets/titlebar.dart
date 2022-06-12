@@ -15,7 +15,7 @@ const _kTitleBarHeight = 38.0;
 /// {@endtemplate}
 class TitleBar extends StatelessWidget {
   /// {@macro title_bar}
-  const TitleBar({Key? key}) : super(key: key);
+  const TitleBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class TitleBar extends StatelessWidget {
 }
 
 class _AppTitle extends StatelessWidget {
-  const _AppTitle({Key? key}) : super(key: key);
+  const _AppTitle();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _AppTitle extends StatelessWidget {
 }
 
 class _TitleBarAction extends StatelessWidget {
-  const _TitleBarAction({Key? key}) : super(key: key);
+  const _TitleBarAction();
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class _TitleBarAction extends StatelessWidget {
 }
 
 class _TitleBarLeading extends StatelessWidget {
-  const _TitleBarLeading({Key? key}) : super(key: key);
+  const _TitleBarLeading();
 
   @override
   Widget build(BuildContext context) {

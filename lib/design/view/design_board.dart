@@ -7,7 +7,7 @@ import '../../board/board.dart';
 /// {@endtemplate}
 class DesignBoard extends StatelessWidget {
   ///{@macro design_board}
-  const DesignBoard({Key? key}) : super(key: key);
+  const DesignBoard({super.key});
 
   @override
   Widget build(BuildContext context) {

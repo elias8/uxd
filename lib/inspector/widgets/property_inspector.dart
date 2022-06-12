@@ -7,7 +7,7 @@ const _kPropertyInspectorWidth = 232.0;
 /// {@endtemplate}
 class PropertyInspector extends StatelessWidget {
   /// {@macro property_inspector}
-  const PropertyInspector({Key? key}) : super(key: key);
+  const PropertyInspector({super.key});
 
   @override
   Widget build(BuildContext context) {

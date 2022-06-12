@@ -11,7 +11,7 @@ const _kDesignPanelWidth = 196.0;
 /// {@endtemplate}
 class DesignPanelContainer extends StatelessWidget {
   /// {@macro design_panel_container}
-  const DesignPanelContainer({Key? key}) : super(key: key);
+  const DesignPanelContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
